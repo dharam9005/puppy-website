@@ -25,7 +25,8 @@ class WebsiteHandler(SimpleHTTPRequestHandler):
         return super().do_HEAD()
 
     def proxy(self, send_body=True):
-        request = Request(SITE + self.path, headers={"User-Agent": "Mozilla/5.0"})
+        method = "GET" if send_body else "HEAD"
+        request = Request(SITE + self.path, headers={"User-Agent": "Mozilla/5.0"}, method=method)
         try:
             response = urlopen(request, timeout=20)
         except HTTPError as error:
@@ -41,7 +42,11 @@ class WebsiteHandler(SimpleHTTPRequestHandler):
                 value = response.headers.get(name)
                 if value:
                     self.send_header(name, value)
-            self.send_header("Content-Length", str(len(body)))
+            content_length = response.headers.get("Content-Length")
+            if content_length is None and send_body:
+                content_length = str(len(body))
+            if content_length is not None:
+                self.send_header("Content-Length", content_length)
             self.end_headers()
             if send_body:
                 self.wfile.write(body)
