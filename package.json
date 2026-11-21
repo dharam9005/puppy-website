@@ -1,0 +1,16 @@
+{
+  "name": "puppy-website-deployment",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "build:assets": "node scripts/prepare-assets.mjs",
+    "dev": "npm run build:assets && wrangler dev",
+    "deploy": "npm run build:assets && wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.166.0"
+  }
+}

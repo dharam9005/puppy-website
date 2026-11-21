@@ -2,3 +2,7 @@
 __pycache__/
 *.py[cod]
 _next/image*.html
+node_modules/
+.wrangler/
+.dev.vars
+.cloudflare-assets/
