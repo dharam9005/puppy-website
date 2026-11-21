@@ -10,7 +10,7 @@ await mkdir(output, { recursive: true });
 
 for (const path of [
   "index.html",
-  "_next/static",
+  "_next/static/chunks",
   "cdn-cgi",
   "cursor",
   "media",

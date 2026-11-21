@@ -4,7 +4,7 @@ function isSnapshotAsset(pathname) {
   return (
     pathname === "/" ||
     pathname === "/index.html" ||
-    pathname.startsWith("/_next/static/") ||
+    pathname.startsWith("/_next/static/chunks/") ||
     pathname.startsWith("/media/") ||
     pathname.startsWith("/cursor/") ||
     pathname.startsWith("/cdn-cgi/")
